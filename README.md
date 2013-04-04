@@ -1,4 +1,4 @@
-brotec
+﻿brotec
 ======
 
 Repositório dos brothers
@@ -7,4 +7,4 @@ Um espaço para a gente fazer o que der na telha. Comece algo e libere para os b
 
 Seja criativo e vamos ver onde podemos chegar.
 
-Have fun!
+Have fun! =]
