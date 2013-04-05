@@ -1,0 +1,73 @@
+﻿<html>
+
+<head>
+    <title>Clymene - Playing with Maps</title>
+    
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPER9V2vMrVUJQiiiMLo1_8UeQ8YmRnNA&sensor=false&v=3&libraries=geometry">
+    </script>
+    
+    <script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    </script>
+    
+    <script type="text/javascript" 
+        src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js">
+    </script>
+    
+    <script type="text/javascript" src="script.js"></script>
+    
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    
+    <link id="noscript_css" rel="stylesheet" type="text/css" href="noscript.css" />
+    <script type="text/javascript" src="slide.js"></script>
+    
+</head>
+
+<body>
+
+    <div id="menu" class="slide_in">
+        <div id="menu_text">    
+            
+            <div id="endereco" class="hide_me">
+                <label><b>Address:</b> </label><br />
+                <input id="address"  type="text" size="50" /><br />                         
+                <br />
+            </div>
+            
+            <div id="circulo" class="hide_me">
+                <label><b>A (centro): </b></label><br />
+                <input id="circleA"  type="text" size="50" /><br />                         
+                <br />
+                <label><b>B (extremo): </b></label><br />
+                <input id="circleB"  type="text" size="50" /><br />                                     
+                <br />
+            </div>
+            
+            <div id="rota" class="hide_me">
+                <label><b>Rota: </b></label><br />
+                To do... <br />
+                <br />
+            </div>
+            
+            <div id="linha" class="hide_me">
+                <label><b>Linha: </b></label><br />
+                To do... <br />
+                <br />
+            </div>
+            
+        </div>
+    </div>
+    
+    <div id="bottom_bar">
+        <span class="bottom_text"><a href="#" onclick="slide('endereco');return false" class="trigger"><b>Endereço</b></a></span>        
+        <span class="bottom_text"><a href="#" onclick="slide('circulo');return false" class="trigger"><b>Círculo</b></a></span>        
+        <span class="bottom_text"><a href="#" onclick="slide('rota');return false" class="trigger"><b>Rota</b></a></span>        
+        <span class="bottom_text"><a href="#" onclick="slide('linha');return false" class="trigger"><b>Linha</b></a></span>        
+    </div>
+
+    <div id="map"></div>
+    
+</body>
+
+</html>
