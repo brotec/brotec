@@ -27,42 +27,47 @@
 <body>
 
     <div id="menu" class="slide_in">
-        <div id="menu_text">    
-            
+        <div id="menu_text" class="row">    
+        
+            <span class="left">
             <div id="endereco" class="hide_me">
-                <label><b>Address:</b> </label><br />
+                <b>Address:</b><br />
                 <input id="address"  type="text" size="50" /><br />                         
-                <br />
             </div>
+            </span>            
             
+            <span class="left">
             <div id="circulo" class="hide_me">
-                <label><b>A (centro): </b></label><br />
+                <b>A (centro): </b><br />
                 <input id="circleA"  type="text" size="50" /><br />                         
                 <br />
-                <label><b>B (extremo): </b></label><br />
+                <b>B (extremo): </b><br />
                 <input id="circleB"  type="text" size="50" /><br />                                     
-                <br />
             </div>
+            </span>   
             
             <div id="rota" class="hide_me">
-                <label><b>Rota: </b></label><br />
-                To do... <br />
+                <b>Partida: </b><br />
+                <input id="routeA"  type="text" size="50" /><br />                         
                 <br />
+                <b>Chegada: </b><br />
+                <input id="routeB"  type="text" size="50" /><br />           
             </div>
             
             <div id="linha" class="hide_me">
-                <label><b>Linha: </b></label><br />
+                <b>Linha: </b><br />
                 To do... <br />
-                <br />
             </div>
             
         </div>
     </div>
     
+    <div id="directions" class="hide_me"></div>
+    
     <div id="bottom_bar">
         <span class="bottom_text"><a href="#" onclick="slide('endereco');return false" class="trigger"><b>Endereço</b></a></span>        
         <span class="bottom_text"><a href="#" onclick="slide('circulo');return false" class="trigger"><b>Círculo</b></a></span>        
-        <span class="bottom_text"><a href="#" onclick="slide('rota');return false" class="trigger"><b>Rota</b></a></span>        
+        <span class="bottom_text"><a href="#" onclick="slide('rota');slide('directions');return false" class="trigger"><b>Rota</b></a></span>        
         <span class="bottom_text"><a href="#" onclick="slide('linha');return false" class="trigger"><b>Linha</b></a></span>        
     </div>
 

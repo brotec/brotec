@@ -8,7 +8,13 @@ var markerA;
 var markerB;
 var draw_circle = null;
 
+var directionDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+
 function initialize() {
+				directionsDisplay = new google.maps.DirectionsRenderer();
+    
     
     var latlng = new google.maps.LatLng(-23.700, -46.500);
     var options = {
@@ -32,15 +38,33 @@ function initialize() {
     markerB = new google.maps.Marker({
         map: map
     });
+    
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions'));
 
 }
+
+function calcRoute() {
+        var start = document.getElementById('routeA').value;
+        var end = document.getElementById('routeB').value;
+        var request = {
+          origin: start,
+          destination: end,
+          travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
 
 $(document).ready(function() {
 
     initialize();
 
     $(function() {
-        $("#address, #circleA, #circleB").autocomplete({
+        $("#address, #circleA, #circleB, #routeA, #routeB").autocomplete({
 
             source: function(request, response) {
                 geocoder.geocode({ 'address': request.term }, function(results, status) {
@@ -94,8 +118,6 @@ $(document).ready(function() {
                     });
                     map.fitBounds(draw_circle.getBounds());
                 }
-                
-                
             }
         });
 
@@ -125,8 +147,12 @@ $(document).ready(function() {
                     });
                     map.fitBounds(draw_circle.getBounds());
                 }
-                
-                
+            }
+        });
+        
+        $("#routeA, #routeB").autocomplete({
+            select: function(event, ui) {
+                calcRoute();
             }
         });
 

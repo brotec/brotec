@@ -19,7 +19,7 @@ function slide(id,duration,step_duration){
 	if (duration === undefined) duration = 750;
 	if (!step_duration) step_duration = 10;
 	var steps = Math.max(Math.ceil(duration/step_duration),1);
-	if (el.id.toString() == "box") el.style.overflow = 'auto';
+	if (el.id.toString() == "directions") el.style.overflow = 'auto';
 	else el.style.overflow = 'hidden';
 	if (!el.morph_data) el.morph_data = new Object();
 	if (el.style.height == '0px') {
