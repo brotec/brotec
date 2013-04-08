@@ -1,20 +1,27 @@
 ﻿var map;
+
+//Address
 var geocoder;
 var marker;
 
+//Circle
 var circleA;
 var circleB;
 var markerA;
 var markerB;
 var draw_circle = null;
 
+//Route
 var directionDisplay;
 var directionsService = new google.maps.DirectionsService();
 
-
+//Line
+var poly;
+var geodesicPoly;
+var marker1;
+var marker2;
+      
 function initialize() {
-				directionsDisplay = new google.maps.DirectionsRenderer();
-    
     
     var latlng = new google.maps.LatLng(-23.700, -46.500);
     var options = {
@@ -25,12 +32,14 @@ function initialize() {
 
     map = new google.maps.Map(document.getElementById("map"), options);
 
+    //Address
     geocoder = new google.maps.Geocoder();
 
     marker = new google.maps.Marker({
         map: map
     });
 
+    //Circle
     markerA = new google.maps.Marker({
         map: map
     });
@@ -38,10 +47,59 @@ function initialize() {
     markerB = new google.maps.Marker({
         map: map
     });
-    
+
+    //Route
+    directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directions'));
 
+    //Line
+    marker1 = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        position: new google.maps.LatLng(40, -80)
+    });
+
+    marker2 = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        position: new google.maps.LatLng(50, 10)
+    });
+
+    google.maps.event.addListener(marker1, 'position_changed', update);
+    google.maps.event.addListener(marker2, 'position_changed', update);    
+}
+
+function drawLine() {
+    var bounds = new google.maps.LatLngBounds(marker1.getPosition(), marker2.getPosition());
+    map.fitBounds(bounds);
+
+    var polyOptions = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+        map: map
+    };
+
+    poly = new google.maps.Polyline(polyOptions);
+
+    var geodesicOptions = {
+        strokeColor: '#CC0099',
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+        geodesic: true,
+        map: map
+    };
+
+    geodesicPoly = new google.maps.Polyline(geodesicOptions);
+
+    update();
+}
+
+function update() {
+    var path = [marker1.getPosition(), marker2.getPosition()];
+    poly.setPath(path);
+    geodesicPoly.setPath(path);    
 }
 
 function calcRoute() {
@@ -65,7 +123,6 @@ $(document).ready(function() {
 
     $(function() {
         $("#address, #circleA, #circleB, #routeA, #routeB").autocomplete({
-
             source: function(request, response) {
                 geocoder.geocode({ 'address': request.term }, function(results, status) {
                     response($.map(results, function(item) {
@@ -155,6 +212,5 @@ $(document).ready(function() {
                 calcRoute();
             }
         });
-
     });
 });
